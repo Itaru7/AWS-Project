@@ -9,12 +9,15 @@
 - **AWS CLI**
 	- **Windows**: Download from [here](https://aws.amazon.com/cli/ "here")
 	- ** Mac and Linux**
+
 			pip install awscli
 
 - **JQ** - for managing JSON
 	- **Windows**
+
 			chocolatey install jq
 	- **Mac and Linuux**
+	
 			bew install jq
 	- **Other options**
 	From [here](https://stedolan.github.io/jq/download/ "here")
