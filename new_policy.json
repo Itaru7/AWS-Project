@@ -1,0 +1,18 @@
+{
+    "Version": "2008-10-17",
+    "Id": "s3-publish-to-sns",
+    "Statement": [{
+            "Effect": "Allow",
+            "Principal": { "AWS" : "*" },
+            "Action": [ "SNS:Publish" ],
+            "Resource": "arn:aws:sns:us-west-1:814677066163:s3_sns",
+            "Condition": {
+                "ArnLike": {
+                    "aws:SourceArn":[
+  "arn:aws:s3:*:*:carvi-input-001-us-west-1",
+  "arn:aws:s3:*:*:carvi-input-002-us-west-1"
+]
+                }
+            }
+    }]
+}
