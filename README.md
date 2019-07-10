@@ -1,9 +1,9 @@
 # Index
-1. [Install nessesary tools](#install-nessesary-tools)
-2. [Setup AWS CLI](#setup-aws-cli)
-3. [Create Role and upload Lambda function to AWS](#create-role-and-upload-lambda-function-to-aws)
-4. [Structure](#structure)
-5. [Clean up](#clean-up)
+1. [Install nessesary tools](#1-install-nessesary-tools)
+2. [Setup AWS CLI](#2-setup-aws-cli)
+3. [Create Role and upload Lambda function to AWS](#3-create-role-and-upload-lambda-function-to-aws)
+4. [Structure](#4-structure)
+5. [Clean up](#5-clean-up)
 
 ## 1. Install nessesary tools
 - **AWS CLI**
