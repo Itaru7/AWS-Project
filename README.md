@@ -1,7 +1,7 @@
 # Index
 1. [Install nessesary tools](#install-nessesary-tools)
 2. [Setup AWS CLI](#setup-aws-cli)
-3. [Create Role and upload Lambda function to AWS](#create-role-and-upload lambda-function-to-aws)
+3. [Create Role and upload Lambda function to AWS](#create-role-and-upload-lambda-function-to-aws)
 4. [Structure](#structure)
 5. [Clean up](#clean-up)
 
@@ -71,10 +71,10 @@ In this project, we will need this role when uploading output from lambda to out
 ## 4. Structure
 - Upload one lambda, and have SNS to do cross-region (1 to 1 relation with SNS and S3, but only one lambda on the whole system)
 
+![Structure](https://github.com/Itaru7/AWS-Project/blob/master/sns_lambda.png "Structure")
 
 **When creating a new bucket and if it's not in the same region as the lambda function, create SNS into the same region as the newly created bucket and set up to push notification to the lambda function to achieve cross-region structure.
 **
-
 Run sns_lambda.sh to automate set up
 
 	bash sns_lambda.sh
