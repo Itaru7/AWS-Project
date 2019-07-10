@@ -17,7 +17,7 @@
 
 			chocolatey install jq
 	- **Mac and Linuux**
-	
+
 			bew install jq
 	- **Other options**
 	From [here](https://stedolan.github.io/jq/download/ "here")
@@ -38,6 +38,7 @@ In this project, we will need this role when uploading output from lambda to out
 **OR**
 
 1. Create Default policy file
+
 		cat > role_lambda.json <<- 'EOF'
 		{
 			"Version": "2012-10-17",
@@ -54,17 +55,20 @@ In this project, we will need this role when uploading output from lambda to out
 		EOF
 
 2. Create IAM role on AWS
+
 		# Keep arn of the role
 		IAM_ROLE_ARN_LAMBDA=`aws iam create-role \
     		--role-name "lambda_s3" \
     		--assume-role-policy-document file://role_lambda.json | jq -r .Role.Arn`
 
 3. Add S3 policy to the created role
+
 		aws iam attach-role-policy \
 			--role-name "lambda_s3" \
 			--policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess
 
 4. Upload Lambda function to AWS
+
 		aws lambda create-function --function-name "lambda_sns" \
 			--runtime "python3.6" --role "$IAM_ROLE_ARN_LAMBDA" \
 			--handler "lambda_function.lambda_handler" --timeout 3 \
@@ -87,11 +91,13 @@ Run sns_lambda.sh to automate set up
 ### Detail
 - In this project, the default region is set to **us-east-1**
 - Get account number and region from the user
+
 		# Get account number for the bucket
 		read -p 'account #: ' account_num
 		# Get region for the bucket
 		read -p 'region: ' region
 - Keep ARN of the lambda function
+
 		LAMBDA_ARN=`aws lambda get-function-configuration \
 					--function-name lambda_sns --region us-east-1 | jq -r .FunctionArn`
 
