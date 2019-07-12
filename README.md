@@ -3,7 +3,7 @@
 2. [Setup AWS CLI](#2-setup-aws-cli)
 3. [Create Role and upload Lambda function to AWS](#3-create-role-and-upload-lambda-function-to-aws)
 4. [Structure](#4-structure)
-5. [Upload/Download file](#5-upload/download-file)
+5. [Upload/Download file](#5-uploaddownload-file)
 6. [Clean up](#6-clean-up)
 
 ## 1. Install nessesary tools
