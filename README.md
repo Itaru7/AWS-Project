@@ -3,7 +3,8 @@
 2. [Setup AWS CLI](#2-setup-aws-cli)
 3. [Create Role and upload Lambda function to AWS](#3-create-role-and-upload-lambda-function-to-aws)
 4. [Structure](#4-structure)
-5. [Clean up](#5-clean-up)
+5. [Upload/Download file](#5-upload/download-file)
+6. [Clean up](#6-clean-up)
 
 ## 1. Install nessesary tools
 - **AWS CLI**
@@ -203,7 +204,15 @@ Run sns_lambda.sh to automate set up
 	aws sns set-topic-attributes --topic-arn $SNS_ARN --region $region --attribute-name Policy  --attribute-value file://new_policy.json
 
 
-## 5. Clean up
+## 5. Upload/Download file
+
+	# Upload file
+	aws s3 cp <file_name> s3://carvi-input-<account_number>-<region>/
+	
+	#Download file 
+	aws s3 cp s3://carvi-output-<account_number>-<region>/<file> <file_name_to_save>
+
+## 6. Clean up
 
 	bash cleanup.sh
 
@@ -217,6 +226,14 @@ Run sns_lambda.sh to automate set up
 
 	#delete role
 	aws iam delete-role --role-name lambda_s3
+
+	# delete all topics
+	for x in $(aws s3 ls | grep -E '.*input.*' | cut -d " " -f 3 | cut -d "-" -f 4-6 | uniq -u | xargs -I{} aws sns list-topics --region {} |  awk '{for(i=1;i<=NF;i++){if($i~/.*s3_sns.*/){print $i}}}');  
+	do 
+		region=`echo $x | awk '{split($0, a, ":"); print a[4]}'`
+		account_num=`echo $x | awk '{split($0, a, ":"); print a[5]}'`
+		aws sns delete-topic --topic-arn "arn:aws:sns:$region:$account_num:s3_sns" --region $region
+	done
 
 	#delete S3 buckets
 	aws s3 ls | grep -E 'carvi-input-.*|carvi-output-.*' | awk '{printf "aws s3 rb s3://%s --force\n",$3}'
