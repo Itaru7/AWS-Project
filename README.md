@@ -19,7 +19,7 @@
 			chocolatey install jq
 	- **Mac and Linuux**
 
-			bew install jq
+			brew install jq
 	- **Other options**
 	From [here](https://stedolan.github.io/jq/download/ "here")
 
