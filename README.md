@@ -81,8 +81,7 @@ In this project, we will need this role when uploading output from lambda to out
 
 ![Structure](https://github.com/Itaru7/AWS-Project/blob/master/sns_lambda.png "Structure")
 
-** When creating a new bucket and if it's not in the same region as the lambda function, create SNS into the same region as the newly created bucket and set up to push notification to the lambda function to achieve cross-region structure.
-**
+**When creating a new bucket and if it's not in the same region as the lambda function, create SNS into the same region as the newly created bucket and set up to push notification to the lambda function to achieve cross-region structure.**
 Run sns_lambda.sh to automate set up
 
 	bash sns_lambda.sh
