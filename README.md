@@ -11,7 +11,7 @@
 This project is all done on AWS. When a user puts text file with numbers in the S3 bucket, it triggers SNS then the Lambda function to double up all the numbers in the text file and store the result text file to the another designated S3 bucket.
 **S3 -> SNS -> Lambda -> S3**
 
-## 1. Install nessesary tools
+## 2. Install nessesary tools
 - **AWS CLI**
 	- **Windows**: Download from [here](https://aws.amazon.com/cli/ "here")
 	- ** Mac and Linux**
@@ -28,14 +28,14 @@ This project is all done on AWS. When a user puts text file with numbers in the 
 	- **Other options**
 	From [here](https://stedolan.github.io/jq/download/ "here")
 
-## 2. Setup AWS CLI
+## 3. Setup AWS CLI
 	aws configure
 	AWS Access Key ID [****************4GZQ]: <Type your access key>
 	AWS Secret Access Key [****************LuYP]: <Type your secret access key>
 	Default region name [us-east-2]: us-east-1
 	Default output format [None]: <Choose your default output format>
 
-## 3. Create Role and upload Lambda function to AWS
+## 4. Create Role and upload Lambda function to AWS
 **This role will allow to have full access of S3. 
 In this project, we will need this role when uploading output from lambda to output bucket.**
 
@@ -81,7 +81,7 @@ In this project, we will need this role when uploading output from lambda to out
 			--memory-size 128 --zip-file "fileb://lambda_function.zip" \
 			--region us-east-1
 
-## 4. Structure
+## 5. Structure
 - Upload one lambda, and have SNS to do cross-region (1 to 1 relation with SNS and S3, but only one lambda on the whole system)
 
 ![Structure](https://github.com/Itaru7/AWS-Project/blob/master/sns_lambda.png "Structure")
@@ -209,7 +209,7 @@ Run sns_lambda.sh to automate set up
 	aws sns set-topic-attributes --topic-arn $SNS_ARN --region $region --attribute-name Policy  --attribute-value file://new_policy.json
 
 
-## 5. Upload/Download file
+## 6. Upload/Download file
 
 	# Upload file
 	aws s3 cp <file_name> s3://carvi-input-<account_number>-<region>/
@@ -217,7 +217,7 @@ Run sns_lambda.sh to automate set up
 	#Download file 
 	aws s3 cp s3://carvi-output-<account_number>-<region>/<file> <file_name_to_save>
 
-## 6. Clean up
+## 7. Clean up
 
 	bash cleanup.sh
 
