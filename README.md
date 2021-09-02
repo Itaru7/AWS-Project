@@ -1,5 +1,5 @@
 # Index
-1. [What does this do?](#1-what-does-this-do?)
+1. [What does this do?](#1-what-does-this-do)
 2. [Install nessesary tools](#2-install-nessesary-tools)
 3. [Setup AWS CLI](#3-setup-aws-cli)
 4. [Create Role and upload Lambda function to AWS](#4-create-role-and-upload-lambda-function-to-aws)
@@ -9,6 +9,7 @@
 
 ## 1. What does this do?
 This project is all done on AWS. When a user puts text file with numbers in the S3 bucket, it triggers SNS then the Lambda function to double up all the numbers in the text file and store the result text file to the another designated S3 bucket.
+
 **S3 -> SNS -> Lambda -> S3**
 
 ## 2. Install nessesary tools
